@@ -1,12 +1,11 @@
  <template>
       <Layout>
-    <div class="container justify-center content-center grid grid-cols-1 py-10 px-auto markdown px-6 xl:px-12 w-full max-w-3xl mx-auto xl:w-3/4">
-      <img :src="$page.post.image.file.url" alt="slika">
-    <h1 class="text-2xl mb-2 text-center text-primary">{{$page.post.title}}</h1>
-    <p class="font-light text-sm text-center text-gray mb-6"> Posted on {{$page.post.date}} </p>
-    <div id="body" class="max-auto-sm text-left" v-html="body" />
+    <div class="container content-center justify-center w-full max-w-3xl px-6 py-10 mx-auto grid grid-cols-1 px-auto markdown xl:px-16 xl:w-3/4">
 
-    <h1 class="text-2xl mb-2 text-center text-primary">{{$page.post.body}}</h1>
+    <g-image alt="Example image" :src="$page.post.image.file.url" blur="70" width="135" />
+    <h1 class="mb-2 text-2xl text-center text-primary">{{$page.post.title}}</h1>
+    <p class="mb-6 text-sm font-light text-center text-gray"> Posted on {{$page.post.date}} </p>
+    <div id="body" class="text-left max-auto-sm" v-html="body" />
     </div>
       </Layout>
     </template>
@@ -22,7 +21,6 @@
         }
         },
         body,
-         
         date (format: "MMMM DD, YYYY"),
         path
       }
@@ -39,7 +37,7 @@ export default {
     }
   },
   computed: {
-    content() {
+    body() {
       const md = new MarkdownIt()
 
       return md.render(this.$page.post.body)

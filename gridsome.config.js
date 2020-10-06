@@ -4,41 +4,35 @@
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
-const tailwindcss = require("tailwindcss")
-
+const tailwindcss = require("tailwindcss");
 
 module.exports = {
-  siteName: 'Davidian',
+  siteName: "Davidian",
 
-  templates: { 
+  templates: {
     ContentfulPortfolioBlog: [
       {
-path: '/blog/:slug',
-        component: './src/templates/ContentfulPorfolioBlog.vue'
-      
-      }
-      
-    ]
-    
+        path: "/blog/:title",
+        component: "./src/templates/ContentfulPorfolioBlog.vue",
+      },
+    ],
   },
   plugins: [
     {
-    use: "@gridsome/source-contentful",
+      use: "@gridsome/source-contentful",
       options: {
-      space: process.env.CONTENTFUL_SPACE,
-      accessToken: process.env.CONTENTFUL_TOKEN,
-      host: "cdn.contentful.com",
-      typeName: "Contentful"
+        space: process.env.CONTENTFUL_SPACE,
+        accessToken: process.env.CONTENTFUL_TOKEN,
+        host: "cdn.contentful.com",
+        typeName: "Contentful",
+      },
     },
-}
-],
- css: {
-  loaderOptions: {
-    postcss: {
-      plugins: [
-        tailwindcss
-      ],
+  ],
+  css: {
+    loaderOptions: {
+      postcss: {
+        plugins: [tailwindcss],
+      },
     },
   },
- }
-}
+};
